@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> METADATA</title>
+    <style type="text/css">
+        body {
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            font-family: Arial,
+                sans-serif;
+            margin: 0;
+            padding: 20px;
+            align-items: center;
+
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 7px;
+        }
+
+        ._container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        ._container_ {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: 20px;
+            width: 50%;
+            gap: 3px;
+
+            background-color: #111;
+            color: #fff;
+            border-radius: 20px;
+            padding: 20px;
+
+            img {
+                border-radius: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    {% include "base.html" %}
+    <div class="_container">
+        <h1>Metadata</h1>
+    </div>
+    <div class="_container_">
+        <p>Metadata is data that provides information about data. In other words, it is data about data. Many distinct
+            types of metadata exist, it is basically the part that you cant see but is there. </p>
+        <p>For example, a video may include metadata specifying the length of the video, the name of the director, the
+            date of creation, and so on. </p>
+    </div>
+    <div class="_container">
+        <img src="../../static/meme.webp" alt="metadata" width="500" height="500">
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Generate Certificate</h1>
+        <input type="text" id="name" name="name" />
+        <button onclick="connectWallet()">Connect Wallet</button>
+        <button onclick="getCertificate()">Get Certificate</button>
+        <button onclick="withdraw()">Withdraw Funds</button>
+    </div>
+</body>
+
+</html>
+<script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+<script>
+
+    const abi = [
+        {
+            "inputs": [],
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "string",
+                    "name": "name",
+                    "type": "string"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "string",
+                    "name": "createdAt",
+                    "type": "string"
+                }
+            ],
+            "name": "certified",
+            "type": "event"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "string",
+                    "name": "_name",
+                    "type": "string"
+                },
+                {
+                    "internalType": "string",
+                    "name": "_createdAt",
+                    "type": "string"
+                }
+            ],
+            "name": "createCertificate",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "payable",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "withdraw",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "name": "certificates",
+            "outputs": [
+                {
+                    "internalType": "string",
+                    "name": "name",
+                    "type": "string"
+                },
+                {
+                    "internalType": "string",
+                    "name": "createdAt",
+                    "type": "string"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "_certificateId",
+                    "type": "uint256"
+                }
+            ],
+            "name": "getCertificate",
+            "outputs": [
+                {
+                    "internalType": "string",
+                    "name": "",
+                    "type": "string"
+                },
+                {
+                    "internalType": "string",
+                    "name": "",
+                    "type": "string"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "owner",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        }
+    ]
+    console.log(ethers);
+    let signer;
+    const contractAddress = '0x7c9A72CE39d536B15E3F2EE2062FC32792808e13';
+
+    async function connectWallet() {
+        try {
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            console.log("Connected to wallet:", provider);
+            await provider.send('eth_requestAccounts', []);
+            signer = provider.getSigner();
+            console.log("Signer:", signer);
+        } catch (error) {
+            console.error("Error connecting to wallet:", error);
+        }
+    }
+
+    async function getCertificate(name) {
+        try {
+            if (!signer) {
+                throw new Error("Signer not available. Please connect your wallet first.");
+            }
+
+            const myContractInstance = new ethers.Contract(contractAddress, abi, signer);
+            console.log("Contract instance:", myContractInstance);
+
+            const name = document.getElementById("name").value;
+            if (name == '') {
+                return;
+            }
+            const date = new Date().toDateString();
+            const tx = await myContractInstance.createCertificate(name, date, { value: ethers.utils.parseEther('0.001') });
+            console.log("Transaction hash:", tx.hash);
+            const etherscanLink = "https://sepolia.etherscan.io/tx" + tx.hash;
+            const data = {
+                name: name,
+                date: date,
+                link: etherscanLink
+            };
+            fetch('http://localhost:8000/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        console.log("Data sent successfully.");
+                    } else {
+                        throw new Error("Error sending data.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error occurred:", error);
+                });
+            console.log("Etherscan link:", etherscanLink);
+
+            // Wait for confirmation
+            await tx.wait();
+            console.log("Transaction confirmed.");
+        } catch (error) {
+            console.error("Error occurred:", error);
+        }
+    }
+
+    async function withdraw() {
+        try {
+            if (!signer) {
+                throw new Error("Signer not available. Please connect your wallet first.");
+            }
+
+            const myContractInstance = new ethers.Contract(contractAddress, abi, signer);
+            console.log("Contract instance:", myContractInstance);
+
+            const tx = await myContractInstance.withdraw();
+            console.log("Transaction hash:", tx.hash);
+            const etherscanLink = "https://sepolia.etherscan.io/tx" + tx.hash;
+            console.log("Etherscan link:", etherscanLink);
+
+            // Wait for confirmation
+            await tx.wait();
+            console.log("Transaction confirmed.");
+        } catch (error) {
+            console.error("Error occurred:", error);
+        }
+    }
+</script>
+
+</html>

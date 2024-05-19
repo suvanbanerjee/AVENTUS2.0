@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ζ</title>
+  <link rel="stylesheet" href="../../static/css/index_login.css" />
+  <script src="../../static/js/scramble.js" defer></script>
+  <style>
+    button {
+      background-color: #fff;
+      color: #000;
+      border-radius: 40px;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 10%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="root">
+    <div class="container">
+      <div class="text"></div>
+    </div>
+    <form action="/auth" method="post">
+      <div class="container_">
+        <div class="form__group field">
+          <input type="text" class="form__field" placeholder="Username" name="username" id="username" required />
+          <label for="username" class="form__label">Username</label>
+        </div>
+      </div>
+      <div class="container_">
+        <div class="form__group field">
+          <input type="password" class="form__field" placeholder="Password" name="password" id="password" required />
+          <label for="password" class="form__label">Password</label>
+        </div>
+      </div>
+      <div class="container_" id="button">
+        <button type="submit" class="btn">Log-in</button>
+      </div>
+    </form>
+    <div class="container_" id="button">
+      <p style=" color: #fff;"> Don't have an account <span style="text-decoration: underline; font-weight: bold;"
+          onclick="window.location = '/reg';">Sign-up</span> </p>
+    </div>
+</body>
+
+</html>

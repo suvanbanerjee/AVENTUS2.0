@@ -1,0 +1,49 @@
+<div style="position: fixed; top: 20px; right: 20px; z-index: 10000;">
+    <div>
+        <div style="display: flex; justify-content: center; position: top;">
+            <button onclick="showHintPopup()"
+                style="padding: 10px 20px; background-color: #ffc800; font-weight: bold; color: white; border: none; cursor: pointer; margin-right: 10px; border-radius: 20px;">Hint</button>
+            <button
+                style="padding: 10px 20px; background-color: #4CAF50; font-weight: bold; color: white; border: none; cursor: pointer; border-radius: 20px;"
+                onclick="showPasswordPopup()">Next Level</button>
+        </div>
+    </div>
+</div>
+
+<div id="passwordPopup"
+    style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); color: #000;">
+    <h2 style="text-align: center; margin-bottom: 20px;">Enter Password</h2>
+    <form action="/increment" method="post" style="display: flex; flex-direction: column;">
+        <input type="password" name="password" placeholder="Password" required
+            style="padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;">
+        <button type="submit"
+            style="padding: 10px 20px; background-color: #4CAF50; font-weight: bold; color: white; border: none; cursor: pointer; border-radius: 20px;">Submit</button>
+        <button type="button" onclick="closePasswordPopup()"
+            style="padding: 10px 20px; background-color: #f44336; font-weight: bold; color: white; border: none; cursor: pointer; border-radius: 20px; margin-top: 10px;">Close</button>
+
+    </form>
+</div>
+
+<div id="hintPopup"
+    style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); color: #000;">
+    <h2 style="text-align: center; margin-bottom: 20px;">Hint</h2>
+    <p style="margin-bottom: 10px;">{{ hint }}</p>
+    <button type="button" onclick="closeHintPopup()"
+        style="padding: 10px 20px; background-color: #f44336; font-weight: bold; color: white; border: none; cursor: pointer; border-radius: 20px;">Close</button>
+</div>
+
+
+<script>
+    function showPasswordPopup() {
+        document.getElementById('passwordPopup').style.display = 'block';
+    }
+    function closePasswordPopup() {
+        document.getElementById('passwordPopup').style.display = 'none';
+    }
+    function showHintPopup() {
+        document.getElementById('hintPopup').style.display = 'block';
+    }
+    function closeHintPopup() {
+        document.getElementById('hintPopup').style.display = 'none';
+    }
+</script>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Caesar Cipher Website</title>
+    <style type="text/css">
+        body {
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            font-family: Arial,
+                sans-serif;
+            margin: 0;
+            padding: 20px;
+            align-items: center;
+
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 7px;
+        }
+
+        ._container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        ._container_ {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: 20px;
+            width: 50%;
+            gap: 3px;
+
+            background-color: #111;
+            color: #fff;
+            border-radius: 20px;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    {% include "base.html" %}
+    <div class="_container">
+        <h1>Caesar Cipher</h1>
+    </div>
+    <div class="_container_">
+        <p>Cipher basically means a secret way of writing. In cryptography, a Caesar cipher is a very simple encryption
+            techniques in which each letter in the plain text is shifted a certain number of places down the alphabet.
+            For example, with a shift of 1, A would be replaced by B, B would become C, and so on. The method is
+            apparently named after Julius Caesar, who used it to communicate with his officials.</p>
+        <p>For a Caesar cipher there is some key, which is the number of positions each letter in the plaintext is
+            shifted to get the corresponding letter in the ciphertext. For example, if the key is 1, then A would be
+            replaced by B, B would become C, and so on.</p>
+        <p>For example, if the key is 1, then the message "HELLO" would be encrypted as "IFMMP".</p>
+    </div>
+    <div class="_container">
+        <p>Now your task is to decrypt : gkdobwovyx </p>
+        <p> You have to find the key and decrypt the message. </p>
+    </div>
+
+</body>
+
+</html>

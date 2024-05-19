@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width">
+    <title>Text Encryptor</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+        .rubik {
+            font-family: "Rubik", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        body {
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+            overflow: scroll;
+            position: absolute;
+        }
+
+        .main {
+            background-color: #f4f4f4;
+            padding: 50px;
+            margin: 20px;
+            border-radius: 20px;
+            font-family: 'Rubik', sans-serif;
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            width: 70%;
+            overflow: scroll;
+            flex-direction: column;
+            position: absolute;
+        }
+
+        .button {
+            background-color: #3d5afe;
+            border: none;
+            color: white;
+            padding: 10px 30px;
+            text-align: center;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .input {
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            border: 5px solid white;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        textarea {
+            height: 70px;
+            font-family: 'Rubik', sans-serif;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h1>Level Editor<span style="color:#3d5afe;"> (ZETA)</span></h1>
+        <p style="color: rgb(128, 128, 128);">
+            Edit the markdown code below to update the level. You can also try the AI to solve the level.
+        </p>
+        <form action="/update" method="post">
+            <textarea name="text" id="text" class="input" placeholder="# Markdown code goes here&#10;"></textarea>
+            <input type="text" name="level" id="pass" class="input" placeholder="Level to edit" />
+            <input type="text" name="password" id="password" class="input" placeholder="Password" />
+            <div class="buttons">
+                <button class="button" type="submit">Edit</button>
+                <button class="button" type="submit">Try AI</button>
+            </div>
+        </form>
+    </div>
+    <script type="py" src="./main.py" config="./pyscript.json"></script>
+</body>
+
+</html>

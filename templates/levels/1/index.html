@@ -1,0 +1,70 @@
+<html>
+
+<head>
+    <title>Level 1</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            align-items: center;
+
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 7px;
+        }
+
+        ._container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        ._container_ {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: 20px;
+            width: 50%;
+            gap: 3px;
+
+            background-color: #111;
+            color: #fff;
+            border-radius: 20px;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    {%include "base.html"%}
+    <div class="_container">
+        <h1>Welcome to PROJECT-ZETA</h1>
+    </div>
+    <div class="_container_">
+        <p>Welcome to PROJECT ZETA, a platform to redefine learning</p>
+        <p> The rules of the game are simple, you have to solve the puzzles and reach the end of the game.</p>
+        <p> You can use the hints provided to solve the puzzles.</p>
+        <p> You can also use the console to debug the code.</p>
+        <p> Password is always a dictionary word in all small letters.</p>
+        <p> To sumbit a password, click the Next Level button on the top right corner of the screen.</p>
+
+    </div>
+    <div class="_container">
+        <p>Password for the first level is<span style="font-weight: bold;"> {{ password[level]}} </span>
+        </p>
+    </div>
+</body>
+
+</html>
