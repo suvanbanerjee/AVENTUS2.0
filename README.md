@@ -33,7 +33,7 @@ There is a vercel.json file in the project that allows you to deploy the project
 ## References
 
 The main idea of the project was inspired by CTFd and the idea for levels was inspired by OverTheWire.
-The textscrabble effect was taken from [here](https://codepen.io/soulwire/pen/mEMPrK) the home page ui is a modified version of an existing boostrap template that can be found [here](https://htmltemplates.co/) We belive in open source and all the code for the project is available on github.
+The textscrabble effect was taken from [here](https://codepen.io/soulwire/pen/mEMPrK) the home page ui is a modified version of an existing boostrap template that can be found [here](https://htmltemplates.co/) As pablo picasso said "Good artists copy, great artists steal" we want to thank the original creators of these resources.
 
 ## Contributors
 Thanks to my friends without whom this project would not have been possible.
