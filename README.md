@@ -1,11 +1,42 @@
-# PROJECT ζ
+# PROJECT ζ (AVENTUS 2.0)
 
-Project ζ is an online escape room game that is designed to test your problem solving skills. The game can be played within browser and will require you to think outside the box or rather inside code. Don't wait any longer, start playing now!
+This project was build during the Aventus Hackathon 2024. The goal was to create a platform that allows users to create and share online ctf like challenges. This platform is build using flask and can be deployed on vercel.
 
-## About the Codebase
+## Features
+- Create and share challenges
+- Solve challenges
+- Leaderboard
+- User authentication
+- Admin panel
+- Certificate generation
 
-The codebase is written in Python and uses the Flask framework to serve the game. The game is designed to be played in a browser and is compatible with most modern browsers. The codebase is open source and can be found on GitHub. (Don't worry, we won't spoil the game for you!)
+## Tech Stack
 
-## Contributing
+- Flask
+- Supabase
+- React (Admin Panel)
 
-If you would like to contribute to the project, feel free to fork the repository and submit a pull request. We are always looking for new ideas and improvements to the game. If you have any questions, feel free to reach out.
+
+## Testing
+To test the project locally, you can run the following commands:
+```bash
+pip install -r requirements.txt
+export SUPABASE_URL='some_url'
+export SUPABASE_KEY='some_key'
+python app.py
+```
+
+## Deployment
+
+There is a vercel.json file in the project that allows you to deploy the project on vercel.This project will not work on free plan of vercel as the size of serverless functions is more than the limit of free plan. to deploy the project on vercel you have to disable the certificate generation feature.
+
+## References
+
+The main idea of the project was inspired by CTFd and the idea for levels was inspired by OverTheWire.
+The textscrabble effect was taken from [here](https://codepen.io/soulwire/pen/mEMPrK) the home page ui is a modified version of an existing boostrap template that can be found [here](https://htmltemplates.co/) We belive in open source and all the code for the project is available on github.
+
+## Contributors
+Thanks to my friends without whom this project would not have been possible.
+- Sharad
+- Shreya
+- Vaibhav
